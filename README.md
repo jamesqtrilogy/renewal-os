@@ -27,12 +27,14 @@ renewal-os/
 │   ├── App.tsx                        # Top-level app with sticky nav
 │   └── main.tsx                       # React entry point
 ├── public/
+│   ├── _redirects                     # Cloudflare Pages SPA fallback
 │   └── index.html                     # Standalone demo — no build step, open directly in browser
 ├── docs/
 │   └── renewal_executive_briefing.docx  # One-page landscape executive briefing
 ├── index.html                         # Vite HTML entry point
 ├── package.json
 ├── vite.config.ts
+├── wrangler.jsonc                     # Cloudflare Pages config
 └── tsconfig.json
 ```
 
@@ -44,6 +46,37 @@ npm run dev
 ```
 
 Open `http://localhost:5173`
+
+## Deploy to Cloudflare Pages
+
+This repo is configured for **Cloudflare Pages**.
+
+If you deploy from the Cloudflare dashboard, use:
+
+- **Framework preset:** `Vite`
+- **Build command:** `npm run build`
+- **Build output directory:** `dist`
+
+Cloudflare will rebuild and redeploy automatically on each push to your connected GitHub branch.
+
+### Optional: deploy with Wrangler
+
+The repo includes `wrangler.jsonc` for Pages configuration. After building locally, you can deploy with Wrangler:
+
+```bash
+npm run build
+npx wrangler pages deploy dist --project-name renewal-os
+```
+
+### SPA routing fallback
+
+`public/_redirects` includes:
+
+```text
+/* /index.html 200
+```
+
+This ensures Cloudflare Pages serves the app correctly for client-side routes and deep links.
 
 ## Standalone demo (no build required)
 

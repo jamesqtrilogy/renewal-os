@@ -39,6 +39,8 @@ interface Gate {
   label: string;
 }
 
+type GateDetailView = "gate1" | "gate2";
+
 // ─── Design tokens ───────────────────────────────────────────────────────────
 
 const TYPE_CONFIG: Record<AgentType, { dot: string; bg: string; border: string; text: string; label: string }> = {
@@ -577,7 +579,7 @@ function SwimLaneRow({ row, activeRole }: { row: RoleRow; activeRole: Role }) {
 
 // ─── Main Component ───────────────────────────────────────────────────────────
 
-export default function RenewalProcessMap({ onNavigate }: { onNavigate?: (view: string) => void } = {}) {
+export default function RenewalProcessMap({ onNavigate }: { onNavigate?: (view: GateDetailView) => void } = {}) {
   const [viewMode, setViewMode] = useState<ViewMode>("agents");
   const [activeRole, setActiveRole] = useState<Role>("All roles");
   const [selectedAgent, setSelectedAgent] = useState<string | null>(null);

@@ -25,6 +25,8 @@ interface Gate {
   label: string;
 }
 
+type GateDetailView = "gate1" | "gate2";
+
 // ─── Design tokens ────────────────────────────────────────────────────────────
 
 const TYPE_CONFIG: Record<AgentType, {
@@ -396,7 +398,7 @@ function DetailPanel({ agent, onClose }: { agent: Agent; onClose: () => void }) 
 
 // ─── Main ─────────────────────────────────────────────────────────────────────
 
-export default function AgentInsertionMap({ onNavigate }: { onNavigate?: (view: string) => void } = {}) {
+export default function AgentInsertionMap({ onNavigate }: { onNavigate?: (view: GateDetailView) => void } = {}) {
   const [selectedGate, setSelectedGate] = useState<string | null>(null);
   const [selectedKey, setSelectedKey] = useState<string | null>(null);
 
