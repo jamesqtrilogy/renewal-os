@@ -3,14 +3,16 @@ import AgentInsertionMap from './components/AgentInsertionMap'
 import RenewalProcessMap from './components/RenewalProcessMap'
 import Gate1EvaluationLogic from './components/Gate1EvaluationLogic'
 import Gate2EvaluationLogic from './components/Gate2EvaluationLogic'
+import KpiDashboard from './components/KpiDashboard'
 
-type View = 'agents' | 'roles' | 'gate1' | 'gate2'
+type View = 'agents' | 'roles' | 'gate1' | 'gate2' | 'kpi'
 
 const NAV: { key: View; label: string; sub: string }[] = [
-  { key: 'agents',  label: 'Agent map',          sub: '10 agents · 4 phases'       },
-  { key: 'roles',   label: 'Role responsibilities', sub: 'RACI · ERM / ISR split'  },
-  { key: 'gate1',   label: 'Gate 1 logic',        sub: 'T-140 · customer engagement' },
-  { key: 'gate2',   label: 'Gate 2 logic',        sub: 'T-90 · quote sent'          },
+  { key: 'agents',  label: 'Agent map',             sub: '10 agents · 4 phases'        },
+  { key: 'roles',   label: 'Role responsibilities',  sub: 'RACI · ERM / ISR split'     },
+  { key: 'gate1',   label: 'Gate 1 logic',           sub: 'T-140 · customer engagement' },
+  { key: 'gate2',   label: 'Gate 2 logic',           sub: 'T-90 · quote sent'           },
+  { key: 'kpi',     label: 'KPI dashboard',          sub: 'GRR · NRR · governance'      },
 ]
 
 export default function App() {
@@ -98,6 +100,7 @@ export default function App() {
       {view === 'roles'  && <RenewalProcessMap onNavigate={setView} />}
       {view === 'gate1'  && <Gate1EvaluationLogic />}
       {view === 'gate2'  && <Gate2EvaluationLogic />}
+      {view === 'kpi'    && <KpiDashboard />}
     </div>
   )
 }
